@@ -7,11 +7,15 @@ async def handle_alice_command(request: Request):
     data = await request.json()
 
     command = data['request']['command'].lower()
+    message_id = data['session']['message_id']
 
-    response_text = "Команда не распознана."
+    if message_id == 0:
+        response_text = "Дрон готов"
+    else: 
+        response_text = "Команда не распознана"
+
 
     if "безопасность" in command:
-        print('Защита включена')
         response_text = "Защита включена."
 
     
